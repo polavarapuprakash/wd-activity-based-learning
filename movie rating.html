@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MovieVerse</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#111827;
+    color:white;
+    padding:20px;
+}
+
+header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+header h1{
+    font-size:3rem;
+    color:#facc15;
+}
+
+.movies-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.movie-card{
+    background:#1f2937;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    transition:transform 0.3s;
+}
+
+.movie-card:hover{
+    transform:translateY(-8px);
+}
+
+.movie-card img{
+    width:100%;
+    height:450px;
+    object-fit:cover;
+}
+
+.movie-info{
+    padding:20px;
+}
+
+.movie-info h2{
+    margin-bottom:10px;
+    color:#facc15;
+}
+
+.genre{
+    color:#60a5fa;
+    font-weight:bold;
+}
+
+.rating{
+    display:inline-block;
+    margin-top:10px;
+    background:#facc15;
+    color:black;
+    padding:6px 12px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.synopsis{
+    margin-top:15px;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.review{
+    margin-top:15px;
+    border-top:1px solid #374151;
+    padding-top:10px;
+}
+
+.review h4{
+    color:#10b981;
+    margin-bottom:5px;
+}
+
+@media(max-width:768px){
+    header h1{
+        font-size:2rem;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🎬 MovieVerse</h1>
+    <p>Discover Popular Movies</p>
+</header>
+
+<div class="movies-container">
+
+    <!-- Movie 1 -->
+    <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500" alt="Inception">
+
+        <div class="movie-info">
+            <h2>Inception</h2>
+            <p class="genre">Sci‑Fi | Thriller</p>
+            <p><strong>Release Date:</strong> July 16, 2010</p>
+            <p><strong>Cast:</strong> Leonardo DiCaprio, Joseph Gordon‑Levitt, Elliot Page</p>
+
+            <div class="rating">⭐ 8.8/10</div>
+
+            <div class="synopsis">
+                A master thief who specializes in entering people's dreams is
+                tasked with planting an idea into a target's subconscious.
+            </div>
+
+            <div class="review">
+                <h4>Critic Review</h4>
+                <p>Visually stunning and intellectually engaging, Inception
+                remains one of Christopher Nolan's finest achievements.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movie 2 -->
+    <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=500" alt="Interstellar">
+
+        <div class="movie-info">
+            <h2>Interstellar</h2>
+            <p class="genre">Sci‑Fi | Adventure</p>
+            <p><strong>Release Date:</strong> November 7, 2014</p>
+            <p><strong>Cast:</strong> Matthew McConaughey, Anne Hathaway, Jessica Chastain</p>
+
+            <div class="rating">⭐ 8.7/10</div>
+
+            <div class="synopsis">
+                Earth is becoming uninhabitable, and a team of astronauts
+                travels through a wormhole in search of a new home for humanity.
+            </div>
+
+            <div class="review">
+                <h4>Critic Review</h4>
+                <p>A breathtaking blend of science, emotion, and cinematic
+                spectacle that leaves a lasting impact.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movie 3 -->
+    <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=500" alt="The Dark Knight">
+
+        <div class="movie-info">
+            <h2>The Dark Knight</h2>
+            <p class="genre">Action | Crime | Drama</p>
+            <p><strong>Release Date:</strong> July 18, 2008</p>
+            <p><strong>Cast:</strong> Christian Bale, Heath Ledger, Aaron Eckhart</p>
+
+            <div class="
