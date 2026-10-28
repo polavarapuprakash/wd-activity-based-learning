@@ -1,0 +1,1029 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnHub | E-Learning Platform</title>
+
+<style>
+:root {
+  --primary: #4f46e5;
+  --dark: #172033;
+  --light: #f4f7fb;
+  --muted: #64748b;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Navigation */
+header {
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px #0000000a;
+}
+
+nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  color: var(--primary);
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+.menu-btn {
+  display: none;
+  border: none;
+  background: none;
+  font-size: 25px;
+}
+
+/* Hero section */
+.hero {
+  background: linear-gradient(120deg, #312e81, #6366f1);
+  color: white;
+  padding: 75px 24px;
+}
+
+.hero-content {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  max-width: 620px;
+  color: #e0e7ff;
+  margin-bottom: 25px;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 18px;
+  background: var(--primary);
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.12);
+}
+
+.btn-light {
+  background: white;
+  color: var(--primary);
+}
+
+/* Main layout */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 55px 24px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-heading h2 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.section-heading p,
+.muted {
+  color: var(--muted);
+}
+
+/* Categories */
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.category-btn {
+  border: 1px solid #dbe2ef;
+  background: white;
+  color: var(--dark);
+  padding: 10px 18px;
+  border-radius: 25px;
+  transition: 0.25s;
+}
+
+.category-btn:hover,
+.category-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Course cards */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.course-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #1e293b0b;
+  border: 1px solid #e6eaf1;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: appear 0.6s ease both;
+}
+
+.course-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 15px 35px #1e293b18;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Video thumbnail */
+.thumbnail {
+  height: 185px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+}
+
+.python { background: linear-gradient(135deg, #2563eb, #0f172a); }
+.web { background: linear-gradient(135deg, #059669, #064e3b); }
+.design { background: linear-gradient(135deg, #db2777, #7e22ce); }
+.data { background: linear-gradient(135deg, #ea580c, #7c2d12); }
+.ai { background: linear-gradient(135deg, #4f46e5, #0891b2); }
+.java { background: linear-gradient(135deg, #b45309, #7f1d1d); }
+
+.thumbnail .symbol {
+  font-size: 64px;
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  color: var(--primary);
+  background: white;
+  font-size: 23px;
+  transition: transform 0.3s;
+  box-shadow: 0 5px 20px #0003;
+}
+
+.play-btn:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.duration {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: #111827dd;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.course-body {
+  padding: 20px;
+}
+
+.course-category {
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.course-body h3 {
+  font-size: 20px;
+  margin: 8px 0;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 15px;
+  min-height: 66px;
+}
+
+.instructor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-top: 1px solid #edf0f5;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e0e7ff;
+  color: #3730a3;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+.instructor small {
+  color: var(--muted);
+  display: block;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 12px 0;
+}
+
+.objectives {
+  margin: 8px 0 16px 20px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.objectives li {
+  margin-bottom: 4px;
+}
+
+.enroll-btn {
+  width: 100%;
+}
+
+.enroll-btn.enrolled {
+  background: #059669;
+}
+
+/* Progress bar */
+.progress-area {
+  margin: 14px 0;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.progress-track {
+  height: 8px;
+  border-radius: 20px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  transition: width 0.5s ease;
+}
+
+/* Dashboard */
+.dashboard {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 30px;
+  border: 1px solid #e5e7eb;
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.stat {
+  background: #f1f5ff;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+}
+
+.stat h3 {
+  color: var(--primary);
+  font-size: 28px;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #0f172acc;
+  padding: 20px;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  color: var(--dark);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  padding: 28px;
+  animation: appear 0.25s ease;
+}
+
+.modal-content h2 {
+  margin-bottom: 12px;
+}
+
+.modal-content p {
+  margin-bottom: 15px;
+}
+
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.close-btn {
+  background: #e2e8f0;
+  color: var(--dark);
+}
+
+footer {
+  text-align: center;
+  background: #172033;
+  color: #cbd5e1;
+  padding: 28px 15px;
+  margin-top: 30px;
+}
+
+/* Responsive design */
+@media (max-width: 950px) {
+  .course-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 20px;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 8px 15px #0001;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 55px 20px;
+  }
+
+  .container {
+    padding: 40px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation bar -->
+<header>
+  <nav>
+    <a href="#" class="logo">LearnHub 🎓</a>
+
+    <button class="menu-btn" id="menuBtn"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="navLinks">☰</button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#dashboard">My Learning</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero section -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Learn New Skills.<br>Shape Your Future.</h1>
+    <p>
+      Discover expert-led courses, develop practical skills, and
+      track your learning progress in one place.
+    </p>
+    <a href="#courses" class="btn btn-light">Explore Courses →</a>
+  </div>
+</section>
+
+<main>
+  <!-- Course categories -->
+  <section class="container" id="categories">
+    <div class="section-heading">
+      <h2>Explore Categories</h2>
+      <p>Choose a subject and start learning today.</p>
+    </div>
+
+    <div class="categories">
+      <button class="category-btn active" data-filter="all">All Courses</button>
+      <button class="category-btn" data-filter="programming">Programming</button>
+      <button class="category-btn" data-filter="web">Web Development</button>
+      <button class="category-btn" data-filter="design">Design</button>
+      <button class="category-btn" data-filter="data">Data & AI</button>
+    </div>
+
+    <!-- Course cards are generated with JavaScript -->
+    <div class="course-grid" id="courseGrid"></div>
+    <p id="emptyMessage" style="display:none; text-align:center; padding:25px">
+      No courses found in this category.
+    </p>
+  </section>
+
+  <!-- Learning dashboard -->
+  <section class="container" id="dashboard">
+    <div class="section-heading">
+      <h2>My Learning Dashboard</h2>
+      <p>Monitor your enrolled courses and learning progress.</p>
+    </div>
+
+    <div class="dashboard">
+      <h3>Your Learning Summary</h3>
+      <p class="muted">Enroll in a course and complete lessons to update your progress.</p>
+
+      <div class="dashboard-stats">
+        <div class="stat">
+          <h3 id="enrolledCount">0</h3>
+          <p>Enrolled Courses</p>
+        </div>
+        <div class="stat">
+          <h3 id="completedCount">0</h3>
+          <p>Completed Courses</p>
+        </div>
+        <div class="stat">
+          <h3 id="averageProgress">0%</h3>
+          <p>Average Progress</p>
+        </div>
+      </div>
+
+      <div id="myCourses" style="margin-top:25px"></div>
+    </div>
+  </section>
+</main>
+
+<!-- Lesson modal -->
+<div class="modal" id="lessonModal" role="dialog"
+  aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-content">
+    <h2 id="modalTitle">Course Lesson</h2>
+    <p id="modalDescription"></p>
+    <p class="muted">
+      This is a sample lesson preview. Connect a real video URL
+      to provide video playback.
+    </p>
+    <div class="modal-actions">
+      <button class="btn" id="completeLesson">Mark Lesson Complete</button>
+      <button class="btn close-btn" id="closeModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© <span id="year"></span> LearnHub E-Learning Platform</p>
+  <p>Learn • Practise • Grow</p>
+</footer>
+
+<script>
+const courses = [
+  {
+    id: 1,
+    title: "Python Programming",
+    category: "programming",
+    categoryName: "Programming",
+    symbol: "Py",
+    theme: "python",
+    duration: "8 hours",
+    lessons: 5,
+    instructor: "Alex Morgan",
+    initials: "AM",
+    role: "Python Developer",
+    description: "Learn Python fundamentals, variables, loops, functions, and practical programming.",
+    objectives: [
+      "Understand Python syntax and data types",
+      "Write functions and use loops",
+      "Build small Python programs"
+    ]
+  },
+  {
+    id: 2,
+    title: "Full Stack Web Development",
+    category: "web",
+    categoryName: "Web Development",
+    symbol: "</>",
+    theme: "web",
+    duration: "12 hours",
+    lessons: 6,
+    instructor: "Jamie Lee",
+    initials: "JL",
+    role: "Web Developer",
+    description: "Create responsive websites using HTML, CSS, JavaScript, and modern web concepts.",
+    objectives: [
+      "Build web pages with HTML",
+      "Style responsive layouts with CSS",
+      "Add interactive features with JavaScript"
+    ]
+  },
+  {
+    id: 3,
+    title: "UI/UX Design Basics",
+    category: "design",
+    categoryName: "Design",
+    symbol: "✦",
+    theme: "design",
+    duration: "6 hours",
+    lessons: 4,
+    instructor: "Sophia Chen",
+    initials: "SC",
+    role: "UI/UX Designer",
+    description: "Learn user-friendly interface design, wireframes, visual hierarchy, and prototyping.",
+    objectives: [
+      "Understand user-centered design",
+      "Create basic wireframes",
+      "Explore interface design principles"
+    ]
+  },
+  {
+    id: 4,
+    title: "Data Science Fundamentals",
+    category: "data",
+    categoryName: "Data & AI",
+    symbol: "📊",
+    theme: "data",
+    duration: "10 hours",
+    lessons: 5,
+    instructor: "Ryan Patel",
+    initials: "RP",
+    role: "Data Analyst",
+    description: "Explore data analysis, visualization, statistics, and introductory data science workflows.",
+    objectives: [
+      "Understand basic data concepts",
+      "Explore data visualization",
+      "Interpret simple datasets"
+    ]
+  },
+  {
+    id: 5,
+    title: "Artificial Intelligence Basics",
+    category: "data",
+    categoryName: "Data & AI",
+    symbol: "AI",
+    theme: "ai",
+    duration: "9 hours",
+    lessons: 5,
+    instructor: "Taylor James",
+    initials: "TJ",
+    role: "AI Educator",
+    description: "Discover AI concepts, machine learning basics, and real-world applications.",
+    objectives: [
+      "Explain basic AI concepts",
+      "Understand machine learning",
+      "Identify practical AI applications"
+    ]
+  },
+  {
+    id: 6,
+    title: "Java Programming",
+    category: "programming",
+    categoryName: "Programming",
+    symbol: "Ja",
+    theme: "java",
+    duration: "7 hours",
+    lessons: 4,
+    instructor: "Chris Wilson",
+    initials: "CW",
+    role: "Software Engineer",
+    description: "Learn Java syntax, object-oriented programming, classes, and methods.",
+    objectives: [
+      "Write basic Java programs",
+      "Understand classes and objects",
+      "Use methods and conditions"
+    ]
+  }
+];
+
+// Store learning information for the current browser session.
+// A backend/database is needed for permanent user accounts.
+const progress = {};
+let activeCourseId = null;
+let activeLesson = 0;
+let activeFilter = "all";
+
+const courseGrid = document.getElementById("courseGrid");
+const modal = document.getElementById("lessonModal");
+
+// Build a course card
+function createCourseCard(course) {
+  const state = progress[course.id] || {
+    enrolled: false,
+    completedLessons: []
+  };
+
+  const percent = Math.round(
+    state.completedLessons.length / course.lessons * 100
+  );
+
+  const enrolled = state.enrolled;
+
+  return `
+    <article class="course-card">
+      <div class="thumbnail ${course.theme}">
+        <span class="symbol">${course.symbol}</span>
+        <button class="play-btn"
+          aria-label="Preview ${course.title}"
+          data-action="preview" data-id="${course.id}">▶</button>
+        <span class="duration">${course.duration}</span>
+      </div>
+
+      <div class="course-body">
+        <span class="course-category">${course.categoryName}</span>
+        <h3>${course.title}</h3>
+        <p class="description">${course.description}</p>
+
+        <div class="instructor">
+          <div class="avatar">${course.initials}</div>
+          <div>
+            <strong>${course.instructor}</strong>
+            <small>${course.role}</small>
+          </div>
+        </div>
+
+        <div class="course-meta">
+          <span>📚 ${course.lessons} lessons</span>
+          <span>🎓 Beginner friendly</span>
+        </div>
+
+        <strong>Learning objectives</strong>
+        <ul class="objectives">
+          ${course.objectives.map(item => `<li>${item}</li>`).join("")}
+        </ul>
+
+        ${enrolled ? `
+          <div class="progress-area">
+            <div class="progress-label">
+              <span>Course progress</span>
+              <strong>${percent}%</strong>
+            </div>
+            <div class="progress-track"
+              role="progressbar"
+              aria-label="${course.title} progress"
+              aria-valuemin="0" aria-valuemax="100"
+              aria-valuenow="${percent}">
+              <div class="progress-fill" style="width:${percent}%"></div>
+            </div>
+          </div>
+        ` : ""}
+
+        <button class="btn enroll-btn ${enrolled ? "enrolled" : ""}"
+          data-action="${enrolled ? "learn" : "enroll"}"
+          data-id="${course.id}">
+          ${enrolled
+            ? (percent === 100 ? "Review Course" : "Continue Learning")
+            : "Enroll Now"}
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+// Display courses and apply the category filter
+function renderCourses() {
+  const visibleCourses = courses.filter(course =>
+    activeFilter === "all" || course.category === activeFilter
+  );
+
+  courseGrid.innerHTML = visibleCourses.map(createCourseCard).join("");
+
+  document.getElementById("emptyMessage").style.display =
+    visibleCourses.length ? "none" : "block";
+
+  updateDashboard();
+}
+
+// Update learning statistics
+function updateDashboard() {
+  const enrolledCourses = courses.filter(course =>
+    progress[course.id]?.enrolled
+  );
+
+  const completedCourses = enrolledCourses.filter(course =>
+    progress[course.id].completedLessons.length === course.lessons
+  );
+
+  const totalProgress = enrolledCourses.reduce((sum, course) => {
+    return sum +
+      progress[course.id].completedLessons.length / course.lessons;
+  }, 0);
+
+  const average = enrolledCourses.length
+    ? Math.round(totalProgress / enrolledCourses.length * 100)
+    : 0;
+
+  document.getElementById("enrolledCount").textContent =
+    enrolledCourses.length;
+
+  document.getElementById("completedCount").textContent =
+    completedCourses.length;
+
+  document.getElementById("averageProgress").textContent =
+    average + "%";
+
+  const myCourses = document.getElementById("myCourses");
+
+  if (!enrolledCourses.length) {
+    myCourses.innerHTML =
+      '<p class="muted">You have not enrolled in any courses yet.</p>';
+    return;
+  }
+
+  myCourses.innerHTML = enrolledCourses.map(course => {
+    const state = progress[course.id];
+    const percent = Math.round(
+      state.completedLessons.length / course.lessons * 100
+    );
+
+    return `
+      <div style="margin-top:20px">
+        <div class="progress-label">
+          <strong>${course.title}</strong>
+          <span>${percent}%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width:${percent}%"></div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+// Enroll in a course
+function enrollCourse(id) {
+  if (!progress[id]) {
+    progress[id] = {
+      enrolled: false,
+      completedLessons: []
+    };
+  }
+
+  progress[id].enrolled = true;
+
+  renderCourses();
+}
+
+// Open lesson preview
+function openLesson(id) {
+  const course = courses.find(item => item.id === id);
+  if (!course) return;
+
+  if (!progress[id]?.enrolled) {
+    alert("Please enroll in this course to start learning.");
+    return;
+  }
+
+  activeCourseId = id;
+
+  // Find the first lesson not yet completed
+  activeLesson = Array.from(
+    { length: course.lessons },
+    (_, index) => index
+  ).find(index =>
+    !progress[id].completedLessons.includes(index)
+  );
+
+  if (activeLesson === undefined) {
+    activeLesson = 0;
+  }
+
+  document.getElementById("modalTitle").textContent = course.title;
+
+  document.getElementById("modalDescription").textContent =
+    "Lesson " + (activeLesson + 1) + " of " + course.lessons +
+    ": " + course.objectives[
+      Math.min(
+        Math.floor(activeLesson * course.objectives.length / course.lessons),
+        course.objectives.length - 1
+      )
+    ];
+
+  const completed = progress[id].completedLessons.includes(activeLesson);
+
+  document.getElementById("completeLesson").textContent =
+    completed ? "Lesson Already Completed" : "Mark Lesson Complete";
+
+  document.getElementById("completeLesson").disabled = completed;
+  modal.classList.add("open");
+}
+
+// Handle course card buttons
+courseGrid.addEventListener("click", event => {
+  const button = event.target.closest("button[data-action]");
+  if (!button) return;
+
+  const id = Number(button.dataset.id);
+  const action = button.dataset.action;
+
+  if (action === "enroll") {
+    enrollCourse(id);
+    alert("Successfully enrolled! Start your first lesson.");
+  } else if (action === "learn") {
+    openLesson(id);
+  } else if (action === "preview") {
+    if (!progress[id]?.enrolled) {
+      alert("Enroll in this course to access its lesson preview.");
+    } else {
+      openLesson(id);
+    }
+  }
+});
+
+// Mark a lesson as completed
+document.getElementById("completeLesson").addEventListener("click", () => {
+  if (activeCourseId === null) return;
+
+  const state = progress[activeCourseId];
+
+  if (!state.completedLessons.includes(activeLesson)) {
+    state.completedLessons.push(activeLesson);
+  }
+
+  modal.classList.remove("open");
+  renderCourses();
+});
+
+// Close lesson modal
+document.getElementById("closeModal").addEventListener("click", () => {
+  modal.classList.remove("open");
+});
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) {
+    modal.classList.remove("open");
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    modal.classList.remove("open");
+  }
+});
+
+// Category filtering
+document.querySelectorAll(".category-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    activeFilter = button.dataset.filter;
+
+    document.querySelectorAll(".category-btn").forEach(item => {
+      item.classList.toggle("active", item === button);
+    });
+
+    renderCourses();
+  });
+});
+
+// Mobile navigation
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+  });
+});
+
+// Footer year and initial display
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+renderCourses();
+</script>
+
+</body>
+</html>
